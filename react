@@ -1,0 +1,48 @@
+* Props:
+Props là cách để bạn có thể truyền dữ liệu từ component cha xuống component con.
+Khi truyền dữ liệu qua props, component con chỉ được đọc, không thể thay đổi dữ liệu đó. Nhờ đó mà component được sử dụng ở bất kỳ đâu cũng luôn hiển thị cùng 1 đầu ra khi có cùng 1 giá trị đầu vào. Điều này giúp chúng ra dễ dàng kiểm soát Component hơn.
+
+// Parent 
+export default class WelcomeScreen extends React.Component {
+  render () {
+    return (
+     <View>
+          <Heading message={'Chào mừng độc giả tới VNTALKING '}/>
+     </View>
+    )
+  }
+}
+// Child component
+export default class Heading extends React.Component {
+  render () {
+    return (
+      <View>
+        <Text>{this.props.message}</Text>
+      </View>
+    )
+  }
+}
+Heading.propTypes = {
+  message: PropTypes.string
+}
+Heading.defaultProps = {
+  message: 'Heading One'
+}
+
+Giải thích Props
+Trong ví dụ trên, chúng ta có một component Heading, với một props là message. Vì vậy, khi bạn cần sử dụng Heading component (ví dụ như ở màn hình WelcomeScreen), chúng ta chỉ cần truyền giá trị vào message là được:
+<Heading message={'Chào mừng độc giả tới VNTALKING '}/>
+
+Trong trường hợp bản thân một component nhận dữ liệu trực tiếp từ người dùng thì sao? Ví dụ như nhập dữ liệu thông qua các input field. Đây là lúc nghĩ tới sử dụng State.
+
+* State:
+State hoạt động khác với Props. State là đối tượng thành phần của component, trong khi các props được truyền giá trị từ bên ngoài vào component đó.
+
+Trong ReactJS và React Native, State được sử dụng trong các component để lưu thông tin.
+Không cập nhật giá trị của state trực tiếp bằng cách sử dụng this.state. Bạn được khuyến cáo luôn sử dụng hàm setState để cập nhật state.Tại sao lại như vậy?
+Bởi vì, khi sử dụng hàm setState() để thay đổi giá trị State, React sẽ cập nhật cây DOM một cách tự động. Bạn không phải lo lắng về việc phải thêm viết thêm xử lý sự kiện nữa.
+-----Vậy khi nào State được sử dụng???????????????
+Bất cứ khi nào dữ liệu trong một component cần thay đổi, State có thể được sử dụng.?
+
+
+
